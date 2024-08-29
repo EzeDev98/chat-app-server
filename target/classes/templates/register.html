@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{css/register.css}">
+    <title>Sign up form </title>
+</head>
+
+<body>
+<section id="container">
+    <div class="container">
+        <div class="title">
+            <h3>Sign up</h3>
+            <h4>Signup now to start chatting with your loved ones for free! </h4>
+        </div>
+        <div class="error" th:if="${errorMessage != null}">
+            <h4 th:text="${errorMessage}"></h4>
+        </div>
+        <div class="form">
+            <form th:action="@{/registration}" method="post" role="form" th:object="${user}">
+                <div class="box">
+                    <input th:field="*{firstname}" type="text" name="firstname" id="firstname" class="input-fields"
+                           placeholder="Enter your first name ..." required>
+                </div>
+                <div class="box">
+                    <input th:field="*{lastname}" type="text" name="lastname" id="lastname" class="input-fields" placeholder="Enter your last name ..."
+                           required>
+                </div>
+                <div class="box">
+                    <input th:field="*{username}" type="text" name="username" id="username" class="input-fields" placeholder="Enter your user name ..."
+                           required>
+                </div>
+                <div class="box">
+                    <input th:field="*{email}" type="email" name="email" id="email" class="input-fields" placeholder="Enter your email ..."
+                           required>
+                </div>
+                <div class="box">
+                    <input th:field="*{phoneNumber}" type="text" name="phoneNumber" id="phoneNumber" class="input-fields" placeholder="Enter your phone number ..." required>
+                </div>
+                <div class="box">
+                    <input th:field="*{password}" type="password" name="password" id="password" class="input-fields"
+                           placeholder="Enter your password ..." required>
+                </div>
+                <div class="box">
+                    <input th:field="*{confirmPassword}" type="password" name="confirmPassword" id="confirmPassword" class="input-fields"
+                           placeholder="Re-enter your password ..." required>
+                </div>
+                <div class="box">
+                    <input type="submit" class="input-btn" value="Signup">
+                </div>
+                <div class="btn-links">
+                    <h3>Already have an account? <a href="/">Login</a></h3>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>
