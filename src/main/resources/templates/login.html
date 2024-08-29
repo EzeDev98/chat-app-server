@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{css/login.css}">
+    <title>Login form </title>
+</head>
+
+<body>
+<section id="container">
+    <div class="container">
+        <div class="title">
+            <h3>Log in</h3>
+            <h4>Login to your account to start chatting with your pals. </h4>
+        </div>
+        <div class="error" th:if="${errorMessage}">
+            <h4 th:text="${errorMessage}"></h4>
+        </div>
+        <div class="form">
+            <form th:action="@{/login}" method="POST">
+                <div class="box">
+                    <input type="text" name="username" class="input-fields"
+                           placeholder="Enter your username ..." required>
+                </div>
+                <div class="box">
+                    <input type="text" name="password" class="input-fields"
+                           placeholder="Enter your password ..." required>
+                </div>
+                <div class="box">
+                    <input type="submit" class="input-btn" value="Login">
+                </div>
+                <div class="btn-links">
+                    <h3>Don't have an account? <a href="/">Signup</a></h3>
+                </div>
+            </form>
+        </div>
+</section>
+</body>
+
+</html>
