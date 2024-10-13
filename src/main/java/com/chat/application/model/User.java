@@ -1,6 +1,7 @@
 package com.chat.application.model;
 
 import com.chat.application.enums.Roles;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -22,22 +24,38 @@ public class User implements UserDetails {
 
     private Long id;
 
+    @Column(name = "first_name")
+    @JsonProperty("first_name")
     private String firstname;
 
+    @Column(name = "last_name")
+    @JsonProperty("last_name")
     private String lastname;
 
+    @Column(name = "user_name")
+    @JsonProperty("username")
     private String username;
 
+    @Column(name = "email")
+    @JsonProperty("email")
     private String email;
 
+    @Column(name = "phone_number")
+    @JsonProperty("phone_number")
     private String phoneNumber;
 
+    @Column(name = "password")
+    @JsonProperty("password")
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Roles role;
 
+    @Column(name = "status")
     private boolean isEnabled = true;
+
+    @Column(name = "time")
+    private LocalDateTime createdAt;
 
     public User() {
     }
