@@ -62,12 +62,36 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserAlreadyExistException.class)
     public ProblemDetail handleUserAlreadyExistException(UserAlreadyExistException ex) {
         LOGGER.error("User already exists: {}", ex.getMessage(), ex);
-        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "User already exists.");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(PhoneNumberAlreadyExistsException.class)
+    public ProblemDetail handlePhoneNumberAlreadyExistsException(PhoneNumberAlreadyExistsException ex) {
+        LOGGER.error("Phone number already exists: {}", ex.getMessage(), ex);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ProblemDetail handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+        LOGGER.error("Email already exists: {}", ex.getMessage(), ex);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(UserNameAlreadyExistsException.class)
+    public ProblemDetail handleUserNameAlreadyExistsException(UserNameAlreadyExistsException ex) {
+        LOGGER.error("Username already exists: {}", ex.getMessage(), ex);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(NullFieldException.class)
+    public ProblemDetail handleNullFieldException(NullFieldException ex) {
+        LOGGER.error("Null fields detected: {}", ex.getMessage(), ex);
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleGeneralException(Exception ex) {
         LOGGER.error("An Unexpected Error Occurred: {}", ex.getMessage(), ex);
-        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.");
+        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
     }
 }

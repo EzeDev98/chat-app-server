@@ -1,10 +1,12 @@
 com/chat/application/model/User.class
 com/chat/application/exception/UserNotFoundException.class
 com/chat/application/service/UserRegistration.class
+com/chat/application/exception/UserAlreadyExistException.class
 com/chat/application/exception/AuthenticationException.class
 com/chat/application/service/impl/UserRegistrationImpl.class
 com/chat/application/security/config/WebSecurityConfig.class
 com/chat/application/exception/PasswordMismatchException.class
+com/chat/application/utility/ErrorMessages.class
 com/chat/application/controller/UserController.class
 com/chat/application/security/PasswordEncoder.class
 com/chat/application/exception/InvalidPhoneNumberException.class
@@ -16,6 +18,8 @@ com/chat/application/response/BaseResponse.class
 com/chat/application/service/impl/UserService.class
 com/chat/application/exception/IncorrectPinException.class
 com/chat/application/ChatApplication.class
+com/chat/application/utility/PasswordValidator.class
 com/chat/application/exception/GlobalExceptionHandler.class
+com/chat/application/service/ChatService.class
 com/chat/application/dto/UserRegistrationRequests.class
 com/chat/application/exception/InvalidPasswordException.class

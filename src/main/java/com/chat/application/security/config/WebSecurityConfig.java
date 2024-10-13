@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 @AllArgsConstructor
@@ -20,40 +21,15 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf( csrf -> csrf.disable())
+        return httpSecurity.csrf( csrf -> csrf.disable())
                 .authorizeHttpRequests( authentication -> authentication
-                        .requestMatchers("/api/v1/registration/**", "/css/**", "/images/**").permitAll()
-                        .requestMatchers("/registration").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/", "/chat").permitAll()
+                        .requestMatchers("/api/v1/create-user").permitAll()
+                        .requestMatchers("/api/v1/login-user").permitAll()
+                        .requestMatchers("/api/v1/search-user").permitAll()
+                        .requestMatchers("/chat/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/chat", true)
-                        .failureUrl("/login?error=true")
-                        .permitAll())
-                .authenticationProvider(authenticationProvider())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/logout")
-                        .clearAuthentication(true)
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll());
-
-        return httpSecurity.build();
-    }
-
-
-
-    @Bean
-    DaoAuthenticationProvider authenticationProvider() {
-            DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-            provider.setPasswordEncoder(passwordEncoder.encode());
-            provider.setUserDetailsService(userService);
-
-        return provider;
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .build();
     }
 }
