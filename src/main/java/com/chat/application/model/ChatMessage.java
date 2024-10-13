@@ -1,5 +1,6 @@
 package com.chat.application.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,12 +22,14 @@ public class ChatMessage {
     private String sender;
     private String receiver;
     private String message;
-    private LocalDateTime createdAt;
+
+    @JsonProperty("time")
+    private String createdAt;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(Long id, String sender, String receiver, String message, LocalDateTime createdAt) {
+    public ChatMessage(Long id, String sender, String receiver, String message, String createdAt) {
         this.id = id;
         this.sender = sender;
         this.receiver = receiver;
