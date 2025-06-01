@@ -1,19 +1,21 @@
 package com.chat.application.response;
-
-import com.chat.application.dto.Payload;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginResponse {
     private String message;
-    private Payload payload;
-
-    public LoginResponse(String message, Payload payload) {
-        this.message = message;
-        this.payload = payload;
-    }
+    private Long userId;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String phoneNumber;
+    private String profilePicture;
+    private String token;
 }

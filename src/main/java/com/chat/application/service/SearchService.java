@@ -1,9 +1,8 @@
 package com.chat.application.service;
-
-import com.chat.application.model.User;
+import com.chat.application.response.UserResponse;
 
 import java.util.List;
 
 public interface SearchService {
-    List<User> getUserFromRepoByKeyword(String name);
+    List<UserResponse> getUserFromRepoByKeyword(String name);
 }

@@ -1,16 +1,15 @@
 package com.chat.application.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "messages")
 public class ChatMessage {
@@ -23,17 +22,14 @@ public class ChatMessage {
     private String receiver;
     private String message;
 
-    @JsonProperty("time")
-    private String createdAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
 
-    public ChatMessage() {
-    }
+    @Column(name = "time")
+    private String time;
 
-    public ChatMessage(Long id, String sender, String receiver, String message, String createdAt) {
-        this.id = id;
-        this.sender = sender;
-        this.receiver = receiver;
-        this.message = message;
-        this.createdAt = createdAt;
-    }
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 }

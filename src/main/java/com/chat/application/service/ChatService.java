@@ -1,12 +1,11 @@
 package com.chat.application.service;
 
-import com.chat.application.model.ChatMessage;
-import com.chat.application.model.User;
-import com.chat.application.response.BaseResponse;
+import com.chat.application.dto.MessageRequest;
+import com.chat.application.response.ChatResponse;
 
 import java.util.List;
 
 public interface ChatService {
-    BaseResponse saveChat(ChatMessage message);
-    List<ChatMessage> getMessages(String sender, String recipient);
+    ChatResponse saveChat(MessageRequest request);
+    List<ChatResponse> getPreviousMessagesBetweenSenderAndReceiver(String sender, String receiver);
 }
