@@ -33,6 +33,12 @@ public class BaseResponse {
 		this.statusCode = statusCode;
 	}
 
+	public BaseResponse(int statusCode, String description, Object data) {
+		this.statusCode = statusCode;
+		this.description = description;
+		this.data = data;
+	}
+
 	public BaseResponse(int statusCode, String description, Object data, Map<String, Object> additionalData) {
 		this.statusCode = statusCode;
 		this.description = description;
